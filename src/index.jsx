@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Dashboard from 'components/dashboard/dashboard';
 
-const Application = () => <h1>Dashboard</h1>;
-
-ReactDOM.render(<Application />, document.getElementById("app"));
+ReactDOM.render(<Dashboard />, document.getElementById("app"));
