@@ -1,16 +1,39 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import styles from './exchange-rates.scss';
 
-export default class ExchangeRates extends React.Component {
+export default class ExchangeRates extends Component {
+  renderCurrentRate() {
+    if (this.props.rate) {
+      return this.props.rate + ' ' + this.props.targetCurrency;
+    } else {
+      return 'loading...';
+    }
+  }
   render() {
+    const title = `${this.props.baseCurrency}/${this.props.targetCurrency} exchange rate`;
+
     return (
       <Card className={styles.card}>
-        <CardTitle title="GBP/PLN exchange rate" />
+        <CardTitle title={`${this.props.baseCurrency}/${this.props.targetCurrency} exchange rate`} />
         <CardText>
-          <img className={styles.chart} src="http://cdn.exchangerates.org.uk/graphs/GBP-PLN-90-day-exchange-rate-history-graph-large.png" alt="GBP/PLN Exchange rate chart" />
+          <p>
+            Current rate: <strong>{this.renderCurrentRate()}</strong>
+          </p>
+          <img className={styles.chart} src={this.props.chartUrl} alt={title + ' chart'} />
+          <p>
+            <a href={this.props.moreInfoUrl}>More details</a>
+          </p>
         </CardText>
       </Card>
     );
   }
 }
+
+ExchangeRates.propTypes = {
+  baseCurrency: PropTypes.string.isRequired,
+  targetCurrency: PropTypes.string.isRequired,
+  chartUrl: PropTypes.string.isRequired,
+  moreInfoUrl: PropTypes.string.isRequired,
+  rate: PropTypes.string,
+};

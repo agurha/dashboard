@@ -1,10 +1,13 @@
 $card-padding: 16px;
-$chart-image-size: 495px;
+$chart-image-size: 350px;
+$chart-crop-top: 25px;
 
 .card {
   max-width: $card-padding * 2 + $chart-image-size;
 }
 
 .chart {
+  margin-top: -$chart-crop-top;
   max-width: 100%;
+  -webkit-clip-path: inset($chart-crop-top 0 0 0);
 }
