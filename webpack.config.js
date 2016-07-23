@@ -5,7 +5,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
   entry: [
-    'isomorphic-fetch',
     'babel-polyfill',
     './client/index.jsx'
   ],
