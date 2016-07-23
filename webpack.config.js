@@ -5,7 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
 	entry: [
-		'./src/index.jsx'
+		'./client/index.jsx'
 	],
 	output: {
 		path: 'public',
@@ -13,7 +13,7 @@ var config = {
 	},
 	resolve: {
 		extensions: ['', '.js', '.jsx'],
-		modulesDirectories: ['node_modules', 'src'],
+		modulesDirectories: ['node_modules', 'client'],
 	},
 	module: {
 		loaders: [
