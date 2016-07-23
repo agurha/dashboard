@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import Widget from 'components/widget/widget';
+import { CardTitle, CardText } from 'react-toolbox/lib/card';
 import styles from './exchange-rates.scss';
 
 export default class ExchangeRates extends Component {
@@ -14,8 +15,7 @@ export default class ExchangeRates extends Component {
     const title = `${this.props.baseCurrency}/${this.props.targetCurrency} exchange rate`;
 
     return (
-      <Card className={styles.card}>
-        <CardTitle title={`${this.props.baseCurrency}/${this.props.targetCurrency} exchange rate`} />
+      <Widget title={`${this.props.baseCurrency}/${this.props.targetCurrency} exchange rate`} className={styles.card}>
         <CardText>
           <p>
             Current rate: <strong>{this.renderCurrentRate()}</strong>
@@ -25,7 +25,7 @@ export default class ExchangeRates extends Component {
             <a href={this.props.moreInfoUrl}>More details</a>
           </p>
         </CardText>
-      </Card>
+      </Widget>
     );
   }
 }
