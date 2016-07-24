@@ -53,12 +53,6 @@ var config = {
       }
     ]
   },
-  devServer: {
-    contentBase: "./public",
-    noInfo: true, //  --no-info option
-    hot: true,
-    inline: true
-  },
   plugins: [
     // Disable Webpack process crashes
     new webpack.NoErrorsPlugin()
@@ -99,6 +93,19 @@ else {
     test: /\.scss$/,
     loader: 'style!' + stylesLoaderConfig
   });
+
+  config.devServer = {
+    contentBase: "./public",
+    noInfo: true, //  --no-info option
+    hot: true,
+    inline: true,
+    proxy: {
+      '/api*': {
+        target: 'http://localhost:3000',
+        secure: false
+      }
+    }
+  };
 
   // Add source maps for debugging
   config.devtool = 'source-map';

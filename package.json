@@ -5,7 +5,8 @@
   "description": "",
   "scripts": {
     "start": "NODE_PATH=. babel-node server.js",
-    "dev": "NODE_PATH=. webpack-dev-server --progress --profile --colors --hot",
+    "dev:front-end": "NODE_PATH=. webpack-dev-server --progress --profile --colors --hot",
+    "dev:back-end": "NODE_PATH=. babel-node server.js",
     "build": "NODE_PATH=. webpack -p --progress --profile --colors",
     "heroku-postbuild": "npm run build"
   },
