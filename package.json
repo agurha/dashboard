@@ -4,10 +4,10 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "start:front-end": "NODE_PATH=./client node server.js",
-    "start:api": "NODE_PATH=./api babel-node api/api.js",
-    "dev": "NODE_PATH=./client webpack-dev-server --progress --profile --colors --hot",
-    "build": "NODE_PATH=./client webpack -p --progress --profile --colors"
+    "start": "NODE_PATH=. babel-node server.js",
+    "dev": "NODE_PATH=. webpack-dev-server --progress --profile --colors --hot",
+    "build": "NODE_PATH=. webpack -p --progress --profile --colors",
+    "heroku-postbuild": "npm run build"
   },
   "author": "Marcin Mazurek <marcin@mazurek.pro>",
   "license": "MIT",
@@ -20,7 +20,6 @@
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-0": "6.5.0",
     "classnames": "2.2.5",
-    "cors": "^2.7.1",
     "css-loader": "0.23.1",
     "express": "4.13.4",
     "extract-text-webpack-plugin": "1.0.1",
