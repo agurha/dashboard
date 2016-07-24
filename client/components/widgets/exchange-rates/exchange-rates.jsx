@@ -22,7 +22,7 @@ export default class ExchangeRates extends Component {
           </p>
           <img className={styles.chart} src={this.props.chartUrl} alt={title + ' chart'} />
           <p>
-            <a href={this.props.moreInfoUrl}>More details</a>
+            <a href={this.props.moreInfoUrl} target="_blank">More details</a>
           </p>
         </CardText>
       </Widget>
