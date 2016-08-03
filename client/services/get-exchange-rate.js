@@ -1,14 +1,14 @@
 export default async function getExchangeRate(baseCurrency, targetCurrency) {
   try {
-    const rateRequest = await fetch(`/api/exchange-rates/${baseCurrency}-${targetCurrency}`, {
+    const request = await fetch(`/api/exchange-rates/${baseCurrency}-${targetCurrency}`, {
       credentials: 'same-origin'
     });
 
-    if (!rateRequest.ok) {
+    if (!request.ok) {
       throw new Error('Failed to fetch the exchange rate.');
     }
 
-    return await rateRequest.text();
+    return await request.text();
   } catch (e) {
     throw new Error('Failed to fetch the exchange rate.');
   }
