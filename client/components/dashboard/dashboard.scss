@@ -8,6 +8,7 @@
 
 .widgets {
   display: flex;
+  flex-wrap: wrap;
   padding: $spacing-between-cards-mobile;
 
   @include desktop-only {

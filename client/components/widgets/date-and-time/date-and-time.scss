@@ -1,5 +1,9 @@
 @import "../../../styles/base";
 
+.card {
+  min-width: 260px;
+}
+
 .time {
   font-size: 8rem;
   color: $palette-light-blue-800;

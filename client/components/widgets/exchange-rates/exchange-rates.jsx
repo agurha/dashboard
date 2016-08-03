@@ -18,7 +18,7 @@ export default class ExchangeRates extends Component {
     const title = `${this.props.baseCurrency}/${this.props.targetCurrency} exchange rate`;
 
     return (
-      <Widget title={title}>
+      <Widget title={title} className={styles.card}>
         <CardText className={styles.cardBody}>
           <div className={styles.exchangeRate}>
             <Chip>

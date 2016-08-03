@@ -2,6 +2,10 @@ $card-padding: 16px;
 $chart-image-size: 350px;
 $chart-crop-top: 25px;
 
+.card {
+  min-width: 300px;
+}
+
 .chart {
   margin-top: -$chart-crop-top;
   max-width: 100%;
