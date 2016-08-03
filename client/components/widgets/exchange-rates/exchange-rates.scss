@@ -2,12 +2,25 @@ $card-padding: 16px;
 $chart-image-size: 350px;
 $chart-crop-top: 25px;
 
-.card {
-  max-width: $card-padding * 2 + $chart-image-size;
-}
-
 .chart {
   margin-top: -$chart-crop-top;
   max-width: 100%;
   -webkit-clip-path: inset($chart-crop-top 0 0 0);
+}
+
+.currencySymbol {
+  // React-toolbox sets display mode to block for <Avatar /> component and breaks <Chip /> component
+  display: inline-block !important;
+}
+
+.exchangeRate {
+  margin-bottom: 1rem;
+}
+
+.cardBody {
+  padding-bottom: 1rem !important;
+}
+
+.moreDetails {
+  margin-top: -1rem;
 }

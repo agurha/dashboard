@@ -21,8 +21,9 @@ export default class ExchangeRatesContainer extends Component {
       <ExchangeRates rate={this.state.rate}
         baseCurrency="GBP"
         targetCurrency="PLN"
+        currencySymbol="£"
         chartUrl="http://ichart.finance.yahoo.com/z?s=GBPPLN=X&t=3m&q=a&l=on&z=s"
-        moreInfoUrl="http://www.bankier.pl/waluty/kursy-walut/nbp/GBP" />
+        detailsUrl="http://www.bankier.pl/waluty/kursy-walut/nbp/GBP" />
     );
   }
 }
