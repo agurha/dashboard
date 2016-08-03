@@ -1,5 +1,11 @@
 @mixin desktop-only {
-  @media (min-width: 600px) {
+  @media (min-width: $mobile-breakpoint) {
+    @content;
+  }
+}
+
+@mixin mobile-only {
+  @media (max-width: ($mobile-breakpoint - 1px)) {
     @content;
   }
 }
