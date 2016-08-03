@@ -4,6 +4,7 @@ import 'babel-polyfill';
 
 import express from 'express';
 import getExchangeRate from 'api/services/get-exchange-rate';
+import getExpenses from 'api/services/get-expenses';
 import auth from 'http-auth';
 
 const app = express();
@@ -29,8 +30,17 @@ app.get('/api/exchange-rates/:baseCurrency-:targetCurrency', async (request, res
     const rate = await getExchangeRate(params.baseCurrency, params.targetCurrency);
     response.send(rate);
   } catch (e) {
-    console.warn(e);
     response.status(500).end('Failed to get the exchange rate.')
+  }
+});
+
+app.get('/api/expenses', async (request, response) => {
+  try {
+    const expenses = await getExpenses();
+    response.send(expenses);
+  } catch (e) {
+    console.warn(e);
+    response.status(500).end('Failed to get the expenses.');
   }
 });
 
