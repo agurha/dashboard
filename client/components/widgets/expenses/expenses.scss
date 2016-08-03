@@ -1,0 +1,20 @@
+@import "../../../styles/base";
+
+.card {
+  display: flex;
+  align-items: baseline;
+}
+
+.expenses {
+  color: $palette-red-400;
+  font-size: 2.5rem;
+}
+
+.currencySymbol {
+  // React-toolbox sets display mode to block for <Avatar /> component and breaks <Chip /> component
+  display: inline-block !important;
+}
+
+.description {
+  margin-right: 0.7em;
+}
