@@ -1,5 +1,6 @@
 import React from 'react';
 import ExchangeRatesContainer from 'components/widgets/exchange-rates/exchange-rates-container';
+import DateAndTimeContainer from 'components/widgets/date-and-time/date-and-time-container';
 import styles from './dashboard.scss';
 
 export default class Dashboard extends React.Component {
@@ -7,6 +8,7 @@ export default class Dashboard extends React.Component {
     return (
       <main className={styles.container}>
         <div className={styles.widgets}>
+          <DateAndTimeContainer />
           <ExchangeRatesContainer />
         </div>
       </main>
