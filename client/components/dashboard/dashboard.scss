@@ -1,5 +1,5 @@
 @import "~react-toolbox/lib/commons"; // Global styles, including normalize.css
-@import "~react-toolbox/lib/colors";
+@import "../../styles/base";
 
 .container {
   background: $palette-grey-50;
@@ -7,9 +7,10 @@
 }
 
 .widgets {
-  padding: 1.5rem;
-  
-  @media (min-width: 600px) {
-    padding: 3rem;
+  display: flex;
+  padding: $spacing-between-cards-mobile;
+
+  @include desktop-only {
+    padding: $spacing-between-cards-desktop;
   }
 }
