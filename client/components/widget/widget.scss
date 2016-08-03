@@ -1,0 +1,9 @@
+@import "../../styles/base";
+
+.container {
+  margin: 0 $spacing-between-cards-mobile $spacing-between-cards-mobile 0;
+
+  @include desktop-only {
+    margin: 0 $spacing-between-cards-desktop $spacing-between-cards-desktop 0;
+  }
+}
