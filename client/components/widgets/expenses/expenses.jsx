@@ -2,25 +2,56 @@ import React, { Component, PropTypes } from 'react';
 import Widget from 'components/widget/widget';
 import { CardText } from 'react-toolbox/lib/card';
 import styles from './expenses.scss';
-import Chip from 'react-toolbox/lib/chip';
-import Avatar from 'react-toolbox/lib/avatar';
+import ProgressBar from 'react-toolbox/lib/progress_bar';
 
 export default class Expenses extends Component {
-  renderExpenses() {
-    if (this.props.expenses) {
-      return this.props.expenses;
+  renderContent() {
+    if (this.props.status === 'loading') {
+      return (
+        <div className={styles.loader}>
+          <ProgressBar type="circular" mode="indeterminate" multicolor={true} />
+        </div>
+      );
+    } else if (this.props.status === 'error') {
+      return 'Failed to load the expenses';
     } else {
-      return 'loading...';
+      return (
+        <div>
+          <table className={styles.table}>
+            <tbody>
+              <tr>
+                <td>Total</td>
+                <td className={styles.amount}>{this.props.currencySymbol}{this.props.expenses.total}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <h6 className={styles.tableHeader}>Per category</h6>
+                </td>
+              </tr>
+              {this.renderPerCategoryExpenses()}
+            </tbody>
+          </table>
+        </div>
+      )
     }
+  }
+  renderPerCategoryExpenses() {
+    return this.props.expenses.perCategory.map(category => {
+      return (
+        <tr>
+          <td>{category.name}</td>
+          <td className={styles.amount}>
+            {this.props.currencySymbol}{category.amount}
+          </td>
+        </tr>
+      );
+    });
   }
   render() {
     return (
-      <Widget title="Expenses">
-        <CardText className={styles.card}>
-          <p className={styles.description}>This month:</p>
-          <Chip>
-            <Avatar title="£" className={styles.currencySymbol} />{this.renderExpenses()}
-          </Chip>
+      <Widget title="This month's expenses">
+        <CardText>
+          {this.renderContent()}
         </CardText>
       </Widget>
     );
@@ -28,5 +59,7 @@ export default class Expenses extends Component {
 }
 
 Expenses.propTypes = {
-  expenses: PropTypes.string.isRequired
+  expenses: PropTypes.object.isRequired,
+  currencySymbol: PropTypes.string.isRequired,
+  status: PropTypes.oneOf('loading', 'loaded', 'error').isRequired
 };

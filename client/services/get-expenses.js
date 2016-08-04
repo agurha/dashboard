@@ -8,7 +8,7 @@ export default async function getExpenses() {
       throw new Error('Failed to fetch the expenses');
     }
 
-    return await request.text();
+    return await request.json();
   } catch (e) {
     throw new Error('Failed to fetch the expenses');
   }

@@ -5,19 +5,20 @@ import moment from 'moment';
 
 export default class ExpensesContainer extends Component {
   state = {
-    expenses: null
+    expenses: null,
+    status: 'loading'
   }
   componentDidMount() {
     (async () => {
       try {
         const expenses = await getExpenses();
-        this.setState({ expenses });
+        this.setState({ status: 'loaded', expenses });
       } catch (e) {
-        this.setState({ expenses: 'fetching failed' });
+        this.setState({ status: 'error' });
       }
     })();
   }
   render() {
-    return <Expenses expenses={this.state.expenses} />;
+    return <Expenses currencySymbol="£" {...this.state} />;
   }
 }

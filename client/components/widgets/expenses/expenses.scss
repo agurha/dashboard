@@ -1,8 +1,12 @@
 @import "../../../styles/base";
 
-.card {
+.sideBySide {
   display: flex;
   align-items: baseline;
+
+  * {
+    margin-right: 0.5em;
+  }
 }
 
 .expenses {
@@ -15,6 +19,24 @@
   display: inline-block !important;
 }
 
-.description {
-  margin-right: 0.7em;
+.table {
+  width: 100%;
+
+  td {
+    padding: 0 0.5em 0.3em 0;
+  }
+
+  .amount {
+    text-align: right;
+    font-weight: bold;
+  }
+
+  .tableHeader {
+    margin-top: 0.3em;
+  }
+}
+
+.loader {
+  text-align: center;
+  margin: 3rem 0;
 }

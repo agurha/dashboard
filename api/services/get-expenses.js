@@ -26,12 +26,11 @@ export default function getExpenses() {
             reject(new Error('Failed to authenticate to CashControl'));
           }
 
-          const expenses = getExpensesForCurrentMonth(body);
-
-          if (expenses.length) {
-            resolve(expenses);
-          } else {
-            reject(new Error('Failed to get the expenses from CashControl'))
+          try {
+            resolve(getExpensesForCurrentMonth(body));
+          }
+          catch (e) {
+            reject(new Error('Failed to get the expenses from CashControl'));
           }
         });
       }
@@ -41,5 +40,21 @@ export default function getExpenses() {
 
 function getExpensesForCurrentMonth(responseBody) {
   const $ = cheerio.load(responseBody);
-  return $('#rapoarte_general_switchContainer2 li').eq(2).text().replace('Expenses-£', '');
+  const total = $('#rapoarte_general_switchContainer2 li').eq(2).text().replace('Expenses-£', '');
+
+  if (!total.length) {
+    throw new Error("Failed to extract the expenses data from HTML.")
+  }
+
+  let perCategory = [];
+
+  $('table.raport tr.categorygroup').each((index, category) => {
+    const amount = $(category).find('td.value').first().text().replace('-£', '');
+
+    if (amount !== '0.00') {
+      perCategory.push({ name: $(category).find('td.category').text().trim(), amount });
+    }
+  });
+
+  return { total, perCategory };
 }
