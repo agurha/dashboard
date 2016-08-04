@@ -5,6 +5,9 @@ import styles from './expenses.scss';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 
 export default class Expenses extends Component {
+  getFormattedCurrency(number) {
+    return this.props.currencySymbol + number.toFixed(2);
+  }
   renderContent() {
     if (this.props.status === 'loading') {
       return (
@@ -21,7 +24,9 @@ export default class Expenses extends Component {
             <tbody>
               <tr>
                 <td>Total</td>
-                <td className={styles.amount}>{this.props.currencySymbol}{this.props.expenses.total}</td>
+                <td className={styles.amount}>
+                  {this.getFormattedCurrency(this.props.expenses.total)}
+                </td>
               </tr>
               <tr>
                 <td colspan="2">
@@ -38,10 +43,10 @@ export default class Expenses extends Component {
   renderPerCategoryExpenses() {
     return this.props.expenses.perCategory.map(category => {
       return (
-        <tr>
+        <tr key={category.name}>
           <td>{category.name}</td>
           <td className={styles.amount}>
-            {this.props.currencySymbol}{category.amount}
+            {this.getFormattedCurrency(category.amount)}
           </td>
         </tr>
       );
@@ -61,5 +66,5 @@ export default class Expenses extends Component {
 Expenses.propTypes = {
   expenses: PropTypes.object.isRequired,
   currencySymbol: PropTypes.string.isRequired,
-  status: PropTypes.oneOf('loading', 'loaded', 'error').isRequired
+  status: PropTypes.oneOf(['loading', 'loaded', 'error']).isRequired
 };
