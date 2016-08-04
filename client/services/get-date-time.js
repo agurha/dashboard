@@ -7,6 +7,6 @@ export default function getDateTime() {
     hour: date('HH'),
     minute: date('mm'),
     dayOfWeek: date('dddd'),
-    date: date('MM.DD.YYYY')
+    date: date('DD.MM.YYYY')
   };
 }
