@@ -7,12 +7,10 @@ import styles from './dashboard.scss';
 export default class Dashboard extends React.Component {
   render() {
     return (
-      <main className={styles.container}>
-        <div className={styles.widgets}>
-          <DateAndTimeContainer />
-          <ExpensesContainer />
-          <ExchangeRatesContainer />
-        </div>
+      <main className={styles.widgets}>
+        <DateAndTimeContainer />
+        <ExpensesContainer />
+        <ExchangeRatesContainer />
       </main>
     );
   }
