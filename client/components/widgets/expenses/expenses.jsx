@@ -2,23 +2,26 @@ import React, { Component, PropTypes } from 'react';
 import Widget from 'components/widget/widget';
 import { CardText } from 'react-toolbox/lib/card';
 import styles from './expenses.scss';
-import ProgressBar from 'react-toolbox/lib/progress_bar';
 
 export default class Expenses extends Component {
   getFormattedCurrency(number) {
     return this.props.currencySymbol + number.toFixed(2);
   }
-  renderContent() {
-    if (this.props.status === 'loading') {
+  renderPerCategoryExpenses() {
+    return this.props.expenses.perCategory.map(category => {
       return (
-        <div className={styles.loader}>
-          <ProgressBar type="circular" mode="indeterminate" multicolor={true} />
-        </div>
+        <tr key={category.name}>
+          <td>{category.name}</td>
+          <td className={styles.amount}>
+            {this.getFormattedCurrency(category.amount)}
+          </td>
+        </tr>
       );
-    } else if (this.props.status === 'error') {
-      return 'Failed to load the expenses';
-    } else {
-      return (
+    });
+  }
+  renderContent() {
+    return (
+      <CardText>
         <div>
           <table className={styles.table}>
             <tbody>
@@ -37,27 +40,13 @@ export default class Expenses extends Component {
             </tbody>
           </table>
         </div>
-      )
-    }
-  }
-  renderPerCategoryExpenses() {
-    return this.props.expenses.perCategory.map(category => {
-      return (
-        <tr key={category.name}>
-          <td>{category.name}</td>
-          <td className={styles.amount}>
-            {this.getFormattedCurrency(category.amount)}
-          </td>
-        </tr>
-      );
-    });
+      </CardText>
+    );
   }
   render() {
     return (
-      <Widget title="This month's expenses">
-        <CardText>
-          {this.renderContent()}
-        </CardText>
+      <Widget title="This month's expenses" status={this.props.status}>
+        {() => this.renderContent()}
       </Widget>
     );
   }
@@ -66,5 +55,5 @@ export default class Expenses extends Component {
 Expenses.propTypes = {
   expenses: PropTypes.object.isRequired,
   currencySymbol: PropTypes.string.isRequired,
-  status: PropTypes.oneOf(['loading', 'loaded', 'error']).isRequired
+  status: PropTypes.string.isRequired
 };

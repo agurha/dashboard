@@ -4,21 +4,24 @@ import getExchangeRate from 'services/get-exchange-rate';
 
 export default class ExchangeRatesContainer extends Component {
   state = {
-    rate: null
+    rate: null,
+    status: 'loading'
   }
   componentDidMount() {
     (async () => {
       try {
         const rate = await getExchangeRate('GBP', 'PLN');
-        this.setState({ rate });
+        this.setState({ rate, status: 'loaded' });
       } catch (e) {
-        this.setState({ rate: 'fetching failed' });
+        console.error(e);
+        this.setState({ status: 'error' });
       }
     })();
   }
   render() {
     return (
-      <ExchangeRates rate={this.state.rate}
+      <ExchangeRates status={this.state.status}
+        rate={this.state.rate}
         baseCurrency="GBP"
         targetCurrency="PLN"
         currencySymbol="£"

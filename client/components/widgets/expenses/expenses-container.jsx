@@ -12,13 +12,13 @@ export default class ExpensesContainer extends Component {
     (async () => {
       try {
         const expenses = await getExpenses();
-        this.setState({ status: 'loaded', expenses });
+        this.setState({ expenses, status: 'loaded' });
       } catch (e) {
         this.setState({ status: 'error' });
       }
     })();
   }
   render() {
-    return <Expenses currencySymbol="£" {...this.state} />;
+    return <Expenses currencySymbol="£" expenses={this.state.expenses} status={this.state.status} />;
   }
 }

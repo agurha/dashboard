@@ -7,27 +7,26 @@ import { CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { Button } from 'react-toolbox/lib/button';
 
 export default class ExchangeRates extends Component {
-  renderCurrentRate() {
-    if (this.props.rate) {
-      return this.props.rate + ' ' + this.props.targetCurrency;
-    } else {
-      return 'loading...';
-    }
+  getTitle() {
+    return `${this.props.baseCurrency}/${this.props.targetCurrency} exchange rate`;
+  }
+  renderContent() {
+    return (
+      <CardText className={styles.cardBody}>
+        <div className={styles.exchangeRate}>
+          <Chip>
+            <Avatar title={this.props.currencySymbol} className={styles.currencySymbol} />{this.props.rate} {this.props.targetCurrency}
+          </Chip>
+        </div>
+        <img className={styles.chart} src={this.props.chartUrl} alt="" />
+        <p className={styles.moreDetails}><a href={this.props.detailsUrl} target="_blank">More details</a></p>
+      </CardText>
+    );
   }
   render() {
-    const title = `${this.props.baseCurrency}/${this.props.targetCurrency} exchange rate`;
-
     return (
-      <Widget title={title} className={styles.card}>
-        <CardText className={styles.cardBody}>
-          <div className={styles.exchangeRate}>
-            <Chip>
-              <Avatar title={this.props.currencySymbol} className={styles.currencySymbol} />{this.renderCurrentRate()}
-            </Chip>
-          </div>
-          <img className={styles.chart} src={this.props.chartUrl} alt={title + ' chart'} />
-          <p className={styles.moreDetails}><a href={this.props.detailsUrl} target="_blank">More details</a></p>
-        </CardText>
+      <Widget title={this.getTitle()} className={styles.card} status={this.props.status}>
+        {() => this.renderContent()}
       </Widget>
     );
   }
@@ -39,5 +38,6 @@ ExchangeRates.propTypes = {
   chartUrl: PropTypes.string.isRequired,
   currencySymbol: PropTypes.string.isRequired,
   detailsUrl: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
   rate: PropTypes.string
 };
