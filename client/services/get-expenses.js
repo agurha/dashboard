@@ -1,15 +1,6 @@
-export default async function getExpenses() {
-  try {
-    const request = await fetch('/api/expenses', {
-      credentials: 'same-origin'
-    });
+import requestFromApi from './utils/request-from-api';
 
-    if (!request.ok) {
-      throw new Error('Failed to fetch the expenses');
-    }
-
-    return await request.json();
-  } catch (e) {
-    throw new Error('Failed to fetch the expenses');
-  }
+export default async function getExpenses(baseCurrency, targetCurrency) {
+  const response = await requestFromApi('expenses');
+  return await response.json();
 }
