@@ -1,6 +1,5 @@
 import request from 'request';
 import cheerio from 'cheerio';
-import superagent from 'superagent';
 import sortBy from 'lodash/fp/sortBy';
 
 export default function getExpenses() {
