@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import Widget from 'components/widget/widget';
-import { CardText } from 'react-toolbox/lib/card';
+import { CardText, CardActions } from 'react-toolbox/lib/card';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import styles from './tasks.scss';
+import { Button } from 'react-toolbox/lib/button';
 
 export default class Tasks extends Component {
   renderTasks(tasks) {
@@ -22,10 +23,15 @@ export default class Tasks extends Component {
   }
   renderContent() {
     return (
-      <CardText>
-        {this.renderTaskGroup('Today', this.props.tasks.today)}
-        {this.renderTaskGroup('This week', this.props.tasks.thisWeek)}
-      </CardText>
+      <div>
+        <CardText className={styles.cardText}>
+          {this.renderTaskGroup('Today', this.props.tasks.today)}
+          {this.renderTaskGroup('This week', this.props.tasks.thisWeek)}
+        </CardText>
+        <CardActions>
+          <Button href={this.props.boardUrl} className={styles.actionButton}>Open tasks board</Button>
+        </CardActions>
+      </div>
     );
   }
   render() {

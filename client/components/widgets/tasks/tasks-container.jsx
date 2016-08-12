@@ -19,6 +19,10 @@ export default class TasksContainer extends Component {
     })();
   }
   render() {
-    return <Tasks tasks={this.state.tasks} status={this.state.status} />;
+    return (
+      <Tasks tasks={this.state.tasks}
+        status={this.state.status}
+        boardUrl="http://kanbanflow.com" />
+    );
   }
 }

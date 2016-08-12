@@ -6,3 +6,13 @@
 .group:not(:last-child) {
   margin-bottom: 1.5rem;
 }
+
+// Bug in React-toolbox - line-height is not being set properly for links
+.actionButton {
+  line-height: 3.5rem !important;
+}
+
+.cardText {
+  padding-top: 0;
+  padding-bottom: 0;
+}
