@@ -5,17 +5,18 @@ import ProgressBar from 'react-toolbox/lib/progress_bar';
 import styles from './tasks.scss';
 
 export default class Tasks extends Component {
+  renderTasks(tasks) {
+    return tasks.map((task, index) => {
+      return (
+        <li className={styles.task} key={index}>{task}</li>
+      );
+    });
+  }
   renderTaskGroup(header, tasks) {
     return (
       <div className={styles.group}>
         <h6>{header} ({tasks.length})</h6>
-        <ul className={styles.taskList}>
-          {tasks.map((task, index) => {
-            return (
-              <li className={styles.task} key={index}>{task}</li>
-            );
-          })}
-        </ul>
+        <ul className={styles.taskList}>{this.renderTasks(tasks)}</ul>
       </div>
     );
   }
@@ -37,6 +38,6 @@ export default class Tasks extends Component {
 }
 
 Tasks.propTypes = {
-  tasks: PropTypes.object.isRequired,
+  tasks: PropTypes.object,
   status: PropTypes.string.isRequired
 };
