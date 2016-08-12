@@ -1,14 +1,5 @@
 @import "../../../styles/base";
 
-.sideBySide {
-  display: flex;
-  align-items: baseline;
-
-  * {
-    margin-right: 0.5em;
-  }
-}
-
 .expenses {
   color: $palette-red-400;
   font-size: 2.5rem;
@@ -23,7 +14,7 @@
   width: 100%;
 
   td {
-    padding: 0 0.5em 0.3em 0;
+    padding: 0 0.5rem 0.3rem 0;
   }
 
   .amount {
@@ -32,6 +23,15 @@
   }
 
   .tableHeader {
-    margin-top: 0.3em;
+    margin-top: 0.3rem;
   }
+}
+
+.cardBody {
+  padding-bottom: 0;
+}
+
+// Bug in React-toolbox - line-height is not being set properly for links
+.actionButton {
+  line-height: 3.5rem !important;
 }

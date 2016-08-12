@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Widget from 'components/widget/widget';
-import { CardText } from 'react-toolbox/lib/card';
+import { CardText, CardActions } from 'react-toolbox/lib/card';
+import { Button } from 'react-toolbox/lib/button';
 import styles from './expenses.scss';
 
 export default class Expenses extends Component {
@@ -21,26 +22,31 @@ export default class Expenses extends Component {
   }
   renderContent() {
     return (
-      <CardText>
-        <div>
-          <table className={styles.table}>
-            <tbody>
-              <tr>
-                <td>Total</td>
-                <td className={styles.amount}>
-                  {this.getFormattedCurrency(this.props.expenses.total)}
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <h6 className={styles.tableHeader}>Per category</h6>
-                </td>
-              </tr>
-              {this.renderPerCategoryExpenses()}
-            </tbody>
-          </table>
-        </div>
-      </CardText>
+      <div>
+        <CardText className={styles.cardBody}>
+          <div>
+            <table className={styles.table}>
+              <tbody>
+                <tr>
+                  <td>Total</td>
+                  <td className={styles.amount}>
+                    {this.getFormattedCurrency(this.props.expenses.total)}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <h6 className={styles.tableHeader}>Per category</h6>
+                  </td>
+                </tr>
+                {this.renderPerCategoryExpenses()}
+              </tbody>
+            </table>
+          </div>
+        </CardText>
+        <CardActions className={styles.cardActions}>
+          <Button href={this.props.detailsUrl} className={styles.actionButton}>Open expenses tracking app</Button>
+        </CardActions>
+      </div>
     );
   }
   render() {
@@ -53,7 +59,7 @@ export default class Expenses extends Component {
 }
 
 Expenses.propTypes = {
-  expenses: PropTypes.object.isRequired,
+  expenses: PropTypes.object,
   currencySymbol: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired
 };

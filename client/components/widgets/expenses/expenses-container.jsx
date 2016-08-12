@@ -19,6 +19,11 @@ export default class ExpensesContainer extends Component {
     })();
   }
   render() {
-    return <Expenses currencySymbol="£" expenses={this.state.expenses} status={this.state.status} />;
+    return (
+      <Expenses currencySymbol="£"
+        expenses={this.state.expenses}
+        status={this.state.status}
+        detailsUrl="http://cashcontrolapp.com" />
+      );
   }
 }
