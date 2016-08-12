@@ -22,9 +22,15 @@ $chart-crop-top: 25px;
 }
 
 .cardBody {
-  padding-bottom: 1rem !important;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-.moreDetails {
-  margin-top: -1rem;
+.cardActions {
+  padding-top: 0;
+}
+
+// Bug in React-toolbox - line-height is not being set properly for links
+.actionButton {
+  line-height: 3.5rem !important;
 }
