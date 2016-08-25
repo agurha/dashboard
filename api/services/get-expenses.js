@@ -52,7 +52,8 @@ function readExpensesFromCashControlReport(responseBody) {
   const total = $('#rapoarte_general_switchContainer2 li')
     .eq(2)
     .text()
-    .replace('Expenses-£', '');
+    .replace('Expenses-£', '')
+    .replace(',', '');
 
   if (!total.length) {
     throw new Error("Failed to extract the expenses data from HTML.")
