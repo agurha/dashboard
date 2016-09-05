@@ -1,3 +1,9 @@
+# Marcin's dashboard
+
+## Demo
+
+![Demo image](https://cloud.githubusercontent.com/assets/6684554/18255167/6b951040-739e-11e6-9b5b-bca23e88d354.png)
+
 ## Environment variables
 
 | Name | Description |
