@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Tasks from './tasks';
 import getTasks from 'services/get-tasks';
-import moment from 'moment';
 
 export default class TasksContainer extends Component {
   state = {

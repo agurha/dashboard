@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Widget from 'components/widget/widget';
 import { CardText, CardActions } from 'react-toolbox/lib/card';
-import ProgressBar from 'react-toolbox/lib/progress_bar';
 import styles from './tasks.scss';
 import { Button } from 'react-toolbox/lib/button';
 
